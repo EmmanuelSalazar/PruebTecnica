@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+form {
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.col {
+    align-items: center;
+    justify-content: center;
+}
+form > input {
+    width: 250px;
+    height: 50px;
+    padding: 1rem;
+}
