@@ -13,21 +13,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if ($montoEntregado >= $precioFinal) {
                         $sql = "INSERT INTO productos (nombre, precio, cantidad, montoRecibido) VALUES ('$nombre', '$precio', '$cantidad', '$montoEntregado')";
                         if ($mysqli->query($sql) === TRUE) {
-                            echo json_encode('Venta realizada con exito', true);
+                            $respuesta = array('mensaje' => 'Venta realizada con exito', 'alerta' => 'alert alert-success');
+                            header('Content-Type: application/json'); 
+                            echo json_encode($respuesta, true);
                         } else {
-                            echo json_encode('Error al realizar la venta', true);
-                        }
+                            $respuesta = array('mensaje' => 'Error al realizar la venta', 'alerta' => 'alert alert-danger');
+                            header('Content-Type: application/json'); 
+                            echo json_encode($respuesta, true);                        }
                     } else {
-                        echo json_encode('El monto entregado no es suficiente', true);
-                    }
+                        $respuesta = array('mensaje' => 'El monto entregado no es suficiente', 'alerta' => 'alert alert-warning');
+                        header('Content-Type: application/json'); 
+                        echo json_encode($respuesta, true);                    }
                 } else {
-                    echo json_encode('La cantidad debe ser un numero entero', true);
+                    $respuesta = array('mensaje' => 'La cantidad debe ser un numero entero', 'alerta' => 'alert alert-warning');
+                    header('Content-Type: application/json'); 
+                    echo json_encode($respuesta, true);                
                 }
             } else{
-                echo json_encode('El precio o monto no pueden ser negativos', true);
+                $respuesta = array('mensaje' => 'El precio o monto no pueden ser negativos', 'alerta' => 'alert alert-warning');
+                header('Content-Type: application/json'); 
+                echo json_encode($respuesta, true);
             }
         } else {
-            echo json_encode('El nombre no puede estar vacio', true);
+            $respuesta = array('mensaje' => 'El nombre no puede estar vacio', 'alerta' => 'alert alert-warning');
+            header('Content-Type: application/json'); 
+            echo json_encode($respuesta, true);
         }
 }
 ?>

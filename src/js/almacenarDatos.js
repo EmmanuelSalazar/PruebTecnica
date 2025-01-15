@@ -2,14 +2,13 @@ $(document).ready(function () {
     $('#form').submit(function (e) { 
         e.preventDefault();
         var data = $('#form').serialize();
-        console.log(data);
         $.ajax({
             type: "POST",
             url: "src/php/almacenarDatos.php",
             data: data,
             dataType: "json",
             success: function (response) {
-                $('#respuesta').html('<div class="alert alert-success" role="alert">'+response+'</div>');
+                $('#respuesta').html('<div class="'+response.alerta+'" role="alert">'+response.mensaje+'</div>');
             },
             error: function(xhr, status, error) {
                 console.error("Error:", error);

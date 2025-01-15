@@ -12,6 +12,7 @@ form {
     height: 100vh;
 }
 .col {
+    display: flex;
     align-items: center;
     justify-content: center;
 }
